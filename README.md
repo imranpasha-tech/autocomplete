@@ -1,6 +1,9 @@
+# autocomplete
+Autocomplete feature for websites built using Spring boot and Angular. 
+## Screenshot
 ![alt](./images/autocomplete.PNG)
 
-How to run? 
+## How to run? 
 1. Go to Deployments folder
 2. Copy /angular to tomcat/webapps/ 
 3. run backend jar as java -jar autocomplete-0.0.1-SNAPSHOT.jar
