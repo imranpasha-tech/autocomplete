@@ -1,1 +1,1 @@
-![alt](./images/autocomplete)
+![alt](./images/autocomplete.PNG)
