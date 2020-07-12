@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead</title>
+</head>
+<body bgcolor="#ffc600">
+
+  <form class="autocomplete-form">
+    <input #input type="text" class="search" placeholder="City or State" (keyup)="autocomplete($event)" (change)="autocomplete($event)">
+    <ul class="suggestions">
+     <li *ngFor="let school of schools">{{ school.city }}</li>
+     
+    </ul>
+  </form>
+</body>
+</html>
