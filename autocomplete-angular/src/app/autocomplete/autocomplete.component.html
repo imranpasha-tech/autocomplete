@@ -4,11 +4,11 @@
   <title>Type Ahead</title>
 </head>
 <body bgcolor="#ffc600">
-
+  <h4>Search for Schools By State</h4>
   <form class="autocomplete-form">
     <input #input type="text" class="search" placeholder="City or State" (keyup)="autocomplete($event)" (change)="autocomplete($event)">
     <ul class="suggestions">
-     <li *ngFor="let school of schools">{{ school.city }}</li>
+     <li *ngFor="let school of matchedSchools" [innerHTML] ="school" ></li>
      
     </ul>
   </form>

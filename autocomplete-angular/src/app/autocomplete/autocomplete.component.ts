@@ -10,6 +10,7 @@ import { schools } from './schools';
 export class AutocompleteComponent implements OnInit {
   @ViewChild('input', { static: true }) input: ElementRef;
   schools: schools[];
+  matchedSchools : string[];
   text: string;
 
   constructor(private autocompleteService: AutocompleteService) {
@@ -21,22 +22,22 @@ export class AutocompleteComponent implements OnInit {
   }
 
   autocomplete(event) {
-    console.log(event);
     this.schools = [];
+
     if (event.keyCode >= 65 && event.keyCode <= 90) {
       console.log(event.key);
-
-      this.autocompleteService.getSuggestions(event.key).subscribe(
+      let text = this.input.nativeElement.value;
+      this.autocompleteService.getSuggestions(text).subscribe(
         response => {
           console.log("response is: ", response);
           this.schools = response;
+          this.matchSchools(this.schools, text);
         }
       );
     }
 
     if (event.keyCode == 8) {
       this.schools = [];
-      console.log(this.input.nativeElement.value);
       let text = this.input.nativeElement.value;
 
       if (text != "") {
@@ -45,12 +46,27 @@ export class AutocompleteComponent implements OnInit {
           response => {
             console.log("response is: ", response);
             this.schools = response;
+            this.matchSchools(this.schools, text);
           }
         );
       } else {
-        this.schools = [];
+        this.matchedSchools = [];
       }
 
     }
   }
+
+  matchSchools(schools: schools[], text: string) {
+   this.matchedSchools =  schools.map(school => {
+
+        let replacement = `<strong>${text}</strong>`;
+        let regex = new RegExp(text, 'g');
+
+        console.log('replacing city:', "alabana".replace(regex, replacement));
+        return school.city.replace(regex, replacement);
+    });
+
+  }
+
+
 }
